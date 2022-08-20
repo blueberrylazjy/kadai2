@@ -1,22 +1,36 @@
+
+
 <h1>Books</h1>
 
+
+<div class="indextitle">
+<p>Title</p>
 <% @books.each do |book| %>
-
- <p>Title<%=  book.title %>body<%= book.body %>
- <%= link_to "show", book_path(book.id) %>
- <%= link_to "edit", edit_book_path(book.id) %>
- <%= link_to "destroy", destroy_book_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<p>
+<%=  book.title %><% end %></p>
+</div>
 
 
+<div class="indexbody"><p>Body</p>
+ <% @books.each do |book| %>
+ <p  ><%= book.body %><% end %>
+</p></div>
+
+ <div class="kick"> <% @books.each do |book| %>
+ <p><%= link_to "Show", book_path(book.id) %>
+ <%= link_to "Edit", edit_book_path(book.id) %>
+ <%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+ <% end %>
  </p>
+ </div>
 
-<% end %>
+
 
 
 
 <h1>New book</h1>
 <% if @book.errors.any? %>
-  <%=@book.errors.count %>件のエラーが発生しました
+  <%=@book.errors.count %> errors prohibited this book from being saved:
   <ul>
     <% @book.errors.full_messages.each do |message| %>
       <li><%= message %></li>
@@ -26,14 +40,14 @@
 
 
     <%= form_with model: @book, url:'/books', method: :post do |f| %>
-    <h4>Title</h4>
+    <h4 >Title</h4>
     <%= f.text_field :title %>
 
     <h4>Body文</h4>
-    <%= f.text_area :body %>
-    <rb>
+    <div class="table"><%= f.text_area :body%></div>
 
-    <%= f.submit 'Create Book' %>
+
+    <div class="table"><%=  f.submit 'Create Book' %></div>
 
 
   <% end %>
